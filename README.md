@@ -167,6 +167,57 @@ dördüncü ve net bir "kısıtlayıcı darboğaz" profili:
 etkisi henüz taranmadı (bu ilk testte carpani=1.0 sabit tutuldu); tam
 duyarlılık analizi + gen esansiyellik analizi de bekliyor.
 
+## Duyarlılık analizi
+
+`src/mars_duyarlilik.py`, önceki projelerle aynı şiddet-ekseni (t: 0=sert,
+1=ılımlı) ve bakım-çarpanı listesini kullanıyor. Sonuç: büyüme, bakım
+çarpanı arttıkça **düzgün ve kademeli** azalıyor (uçurum yok) —
+bakım×1.0'da referansın %51'i, ×2.0'da %31, ×3.0'da %11.5, ×3.5'te %1.6,
+**×4.0'da infeasible**. Bu, B. subtilis'teki keskin uçurumdan farklı,
+Salinibacter'in tam doğrusallığından da farklı — "kademeli aşınma +
+sonunda sert bir sınır" profili. Küçük büyüme değerleri (×3.5, %1.6) 5x
+bağımsız tekrarla doğrulandı, kararlı (JCVI-syn3A'daki gibi bir sınır
+kırılganlığı YOK). Sonuçlar: `results/duyarlilik_sonuclari.csv`,
+`results/buyume_vs_siddet.png`.
+
+## Gen esansiyellik/silme analizi
+
+`src/mars_gen_silme.py`, referans + üç Mars senaryosu (t=0 sabit, bakım
+×1.5/×2.5/×3.5) için 806 genin tek tek silinmesini test etti. `r_ATPM`
+gen-ilişkisiz olduğu için JCVI-syn3A'daki essentiality-paradoksu (silinen
+NGAM geninin büyümeyi artırması) burada YAPISAL OLARAK oluşmuyor —
+ayrı bir istisna/düzeltme listesi gerekmedi.
+
+**Sonuç**:
+
+| Senaryo | Esansiyel gen | Referansa göre |
+|---|---|---|
+| Referans | 282/806 (%35.0) | — |
+| Mars ×1.5 | 282/806 | Değişim yok |
+| Mars ×2.5 | 282/806 | Değişim yok |
+| Mars ×3.5 | 297/806 (%36.8) | **+15 yeni esansiyel gen** |
+
+**Ana bulgu — 15 yeni esansiyel gen, tamamı TEK bir biyolojik sisteme
+ait**: solunum/fotosentez **elektron taşıma zinciri**:
+- `cce_1176/1763/1764/2221-2224/2317-2319/4717` — **NDH-1 kompleksi**
+  (proton-pompalayan NADH dehidrogenaz, Kompleks I)
+- `cce_0994` — ferredoxin-NADP+ redüktaz (FNR)
+- `cce_1975/1976/1977` — sitokrom c oksidaz/redüktaz kompleksleri
+
+Yorum: ışık son derece kısıtlı VE bakım yükü en yüksekken (en aşırı
+senaryo), hücre kalan az miktardaki enerjiyi eksiksiz hasat etmek için
+elektron taşıma zincirinin HER bileşenine muhtaç hale geliyor — herhangi
+birinin kaybı artık telafi edilemiyor. Bu, JCVI-syn3A'daki PDH→PTA→ACK
+bulgusuyla (enerji darboğazının ek ATP-üretim yollarını kritikleştirmesi)
+aynı ailede ama farklı bir mekanizma: orada tek bir yedek yol, burada
+TÜM ana enerji-hasat makinesi kritikleşiyor. Sadece en aşırı senaryoda
+(×3.5) ortaya çıkması, bu duyarlılığın gerçekten bir "son sınır" etkisi
+olduğunu, ara senaryolarda (×1.5/×2.5) henüz devreye girmediğini gösteriyor.
+
+Sonuçlar: `results/gen_silme_sonuclari.csv`,
+`results/mars_yeni_esansiyel_genler.csv`, `results/mars_dispanse_olan_genler.csv`
+(bu proje için de boş — hiçbir gen dispanse olmuyor).
+
 ## Sıradaki adımlar
 
 1. Gerçekçi Mars ortamı kalibrasyonu (ışık şiddeti, CO2/N2 kısmi

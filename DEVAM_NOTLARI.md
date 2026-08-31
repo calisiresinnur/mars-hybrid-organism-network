@@ -57,28 +57,36 @@ profili" (B. subtilis=su, Salinibacter=yok/doğrusal, JCVI-syn3A=
 auxotrofi/imkânsız, Cyanothece=ışık/orta azalma). Detay: README >
 "Mars kısıtları — ilk bulgu".
 
+## Devam — 2026-08-31 (üçüncü tur: duyarlılık + gen esansiyellik analizi)
+
+**TAMAMLANDI**: `src/mars_duyarlilik.py` ve `src/mars_gen_silme.py`.
+
+Duyarlılık: büyüme bakım çarpanına göre DÜZGÜN azalıyor (uçurum yok),
+×4.0'da infeasible. Küçük değerler (×3.5, %1.6) 5x tekrarla doğrulandı,
+JCVI-syn3A'daki gibi bir kırılganlık YOK.
+
+Gen esansiyellik: referans 282/806 (%35), Mars ×1.5/×2.5'te DEĞİŞMİYOR,
+×3.5'te (en aşırı senaryo) **+15 yeni esansiyel gen** — hepsi solunum/
+fotosentez elektron taşıma zincirine ait (NDH-1 kompleksi, FNR, sitokrom
+oksidaz/redüktaz). r_ATPM gen-ilişkisiz olduğu için JCVI-syn3A'daki
+essentiality-paradoksu burada hiç oluşmadı, ekstra düzeltme gerekmedi.
+Detay: README > "Gen esansiyellik/silme analizi".
+
 ## Henüz yapılmadı / sıradaki somut adımlar
 
-1. Bakım çarpanının (radyasyon) etkisini tarama -- bu ilk testte
-   carpani=1.0 sabit tutuldu, henüz taranmadı.
-2. Tam duyarlılık analizi + gen esansiyellik/silme analizi
-   (SOLVER_TOLERANCE=1e-9'dan başlayarak, önceki projelerdeki
-   metodoloji + dersler tekrar uygulanarak -- özellikle solver
-   artefaktlarına karşı REPEATED-verification disiplinini sürdür).
-3. Katman A'ya isteğe bağlı metabolik modüller (antioksidan enzimler,
-   trehaloz -- doğru kaynak organizmasıyla etiketlenerek) eklenmesi --
-   kullanıcıyla ayrıca netleştirilecek, henüz karar verilmedi.
-4. **Katman B literatür taraması** (büyük iş, ayrı bir oturum
+1. Katman A'ya isteğe bağlı metabolik modüller (antioksidan enzimler,
+   trehaloz -- doğru kaynak organizmasıyla, örn. trehaloz için Artemia/
+   maya, etiketlenerek) eklenmesi -- kullanıcıyla ayrıca netleştirilecek,
+   henüz karar verilmedi.
+2. **Katman B literatür taraması** (büyük iş, ayrı bir oturum
    gerektirebilir): Dsup (Ramazzottius varieornatus), CAHS/SAHS/MAHS
    proteinleri, HSP70/HSP20, DNA onarım genleri (RecA benzeri) -- her
    biri için kaynak organizma + kanıt seviyesi (knockdown/RNAi ile
    esansiyellik kanıtlanmış / sadece korunmuşluk / sadece upregülasyon)
    etiketli bir tablo.
-5. GitHub'a push (kullanıcıdan ayrıca izin istenecek -- yeni repo
-   oluşturma, önceki iki projedeki gibi).
-6. Üç/dört projenin karşılaştırmalı bulgu tablosu (B. subtilis su-kısıtlı
+3. Dört projenin karşılaştırmalı bulgu tablosu (B. subtilis su-kısıtlı
    uçurum / Salinibacter uçurumsuz-doğrusal / JCVI-syn3A auxotrofi-engeli
-   / Cyanothece hibrit-tasarım).
+   / Cyanothece ışık-kısıtlı+elektron-taşıma-zinciri).
 
 ## Genel hatırlatmalar (önceki projelerden taşınan, hâlâ geçerli)
 
