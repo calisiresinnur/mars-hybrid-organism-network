@@ -124,7 +124,50 @@ python src/mars_fba.py
     └── mars_fba.py            # Model yükleme + referans büyüme (Katman A, ilk aşama)
 ```
 
-## Henüz yapılmadı (bir sonraki oturum)
+## Mars kısıtları — ilk bulgu
+
+`src/mars_fba.py`, referans olarak yukarıdaki kalibre edilmiş
+fotoototrofik ortamı (foton_sınırı=8.5, gerçek 48 saatlik çiftlenme
+süresine göre kalibre edildi: 0.014476/saat, hedef ln2/48=0.014441 ile
+~%0.2 fark) kullanıyor. NGAM: `r_ATPM` — B. subtilis'teki ATPM ile
+birebir aynı sözleşme (sabit 2.8, gen-ilişkisiz) — JCVI-syn3A'daki
+ters-yön/gen-paradoksu sorunlarının HİÇBİRİ burada yok.
+
+**Mars kısıtları** (ilk, gerekçeli varsayımlar — kesin ölçüm değil):
+- Işık: Mars'ta maksimum güneş ışını Dünya'nın ~%59'u (590 W/m² vs
+  1000 W/m²).
+- N2: Mars'ta N2'nin MUTLAK kısmi basıncı Dünya'nınkinin ~1/6500'ü
+  (Mars: %1.9 N2 × ~0.636 kPa toplam basınç ≈ 0.0121 kPa; Dünya: %78 ×
+  ~101.3 kPa ≈ 79 kPa).
+- CO2: Mars'ta bol (%95.5) — kısıtlayıcı değil.
+- Su: önceki projelerle aynı ilk varsayım (±1.0).
+
+**Sonuç — izole edilmiş kısıt testi**:
+
+| Senaryo | Büyüme | Referansa göre |
+|---|---|---|
+| Tüm kısıtlar | 0.00737 | %51 |
+| Sadece foton kısıtlı | 0.00737 | %51 (tüm kısıtlarla BİREBİR AYNI) |
+| Sadece N2 kısıtlı | 0.01448 | %100 (fark yok) |
+| Sadece su kısıtlı | 0.01448 | %100 (fark yok) |
+
+**Yorum**: Bu organizmanın Mars'taki canlılığı **tamamen ışığa bağlı** —
+N2 kısmi basıncı ~6500 kat azalsa bile (kendi azot fiksasyonu yeterli
+geliyor) ve su kısıtlansa bile büyüme etkilenmiyor. Bu, projedeki
+dördüncü ve net bir "kısıtlayıcı darboğaz" profili:
+
+| Proje | Darboğaz profili |
+|---|---|
+| B. subtilis (iYO844) | Su-kısıtlı, keskin uçurum |
+| Salinibacter (iMB631) | Uçurum yok, doğrusal |
+| JCVI-syn3A (iMMSYN) | Auxotrofi — kategorik olarak imkânsız |
+| **Cyanothece (iCce806)** | **Işık-kısıtlı, orta düzey azalma (%51), uçurum yok** |
+
+**Henüz yapılmadı (bir sonraki oturum)**: bakım çarpanının (radyasyon)
+etkisi henüz taranmadı (bu ilk testte carpani=1.0 sabit tutuldu); tam
+duyarlılık analizi + gen esansiyellik analizi de bekliyor.
+
+## Sıradaki adımlar
 
 1. Gerçekçi Mars ortamı kalibrasyonu (ışık şiddeti, CO2/N2 kısmi
    basınçları, su kısıtı, radyasyon→bakım enerjisi) — mars-minimal-*

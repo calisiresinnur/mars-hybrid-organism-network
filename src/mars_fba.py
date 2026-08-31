@@ -118,17 +118,125 @@ def modeli_yukle():
     return model
 
 
+## Referans (Dünya benzeri) ortam kalibrasyonu
+#
+# Modelin varsayılan (tam açık) ortamı yanıltıcı -- tüm organik/kompleks
+# besinler (amino asitler, şekerler vb.) de açık bırakıldığında model
+# ağırlıkla HETEROTROFİK/mikst yollarla büyüyor (CO2 net SALGILANIYOR,
+# tüketilmiyor -- fotoototrofi değil). Bu proje için "referans" ortam,
+# organizmanın gerçek ekolojik nişini yansıtan KALİBRE EDİLMİŞ fotoototrofik
+# ortam: SADECE ışık + CO2 + N2 (gaz, fiksasyon yoluyla) + mineraller açık,
+# tüm organik/kompleks besinler kapalı (bkz. mars-minimal-cell-network'teki
+# aynı mantık -- ama orada infeasible çıkmıştı, burada feasible).
+#
+# Foton sınırı, gerçek literatür büyüme oranına (Cyanothece 51142, 12s
+# ışık/12s karanlık döngüsünde çiftlenme süresi ~48 saat -- Reed ve ark.
+# çalışmaları, bkz. README) karşılık gelecek şekilde KALİBRE EDİLDİ:
+# foton_sinir=8.5 -> büyüme=0.014476/saat (hedef ln2/48=0.014441, ~%0.2 fark).
+EARTH_FOTON_SINIRI = 8.5  # kalibre edilmiş "Dünya benzeri" ışık üst sınırı
+
+INORGANIK_ACIK = {
+    "EX_m_co2_b", "EX_m_n2_b", "EX_m_h2o_b", "EX_m_h_b",
+    "EX_m_photon_psii_b", "EX_m_photon_psi_b",
+    "EX_m_ca2_b", "EX_m_cu2_b", "EX_m_fe2_b", "EX_m_fe3_b", "EX_m_k_b",
+    "EX_m_mg2_b", "EX_m_mn2_b", "EX_m_na1_b", "EX_m_ni2_b", "EX_m_pi_b",
+    "EX_m_so4_b", "EX_m_zn2_b", "EX_m_cobalt2_b", "EX_m_mobd_b", "EX_m_wo4_b",
+    "EX_m_o2_b", "EX_m_hco3_b",
+}
+
+
+def referans_ortami_uygula(model, foton_sinir=EARTH_FOTON_SINIRI):
+    """Organik/kompleks besinleri kapatır, sadece inorganik kaynakları +
+    kalibre edilmiş ışığı açık bırakır. Bkz. modül docstring'i."""
+    for r in model.reactions:
+        if r.id.startswith("EX_m_") and r.id.endswith("_b") and r.id not in INORGANIK_ACIK:
+            r.lower_bound = 0
+    model.reactions.EX_m_photon_psii_b.lower_bound = -foton_sinir
+    model.reactions.EX_m_photon_psi_b.lower_bound = -foton_sinir
+    return model
+
+
 def referans_buyume(model):
     baseline = model.optimize(raise_error=False)
     durum = model.solver.status
-    print(f"Referans (yayınlanmış/varsayılan ortam) büyüme oranı (1/saat): "
+    print(f"Referans (kalibre edilmiş fotoototrofik ortam) büyüme oranı (1/saat): "
           f"{baseline.objective_value if durum == 'optimal' else 'TANIMSIZ'} | durum: {durum}")
     return baseline
 
 
+def bakim_reaksiyonunu_bul(model):
+    """NGAM: r_ATPM -- iYO844'teki ATPM ile birebir aynı sözleşme (sabit,
+    gen-ilişkisiz). ATPase (JCVI-syn3A) 'dakiği yön çevirme/paradoks'
+    sorunlarının HİÇBİRİ burada yok."""
+    atpm = model.reactions.get_by_id("r_ATPM")
+    print(f"Bakım (NGAM/ATPM) reaksiyonu: {atpm.id} | mevcut sınırlar: {atpm.bounds}")
+    return atpm
+
+
+def mars_kisitlarini_uygula(
+    model, atpm, foton_carpani=0.59, n2_carpani=0.0002, h2o_cap=1.0,
+    bakim_carpani=1.0, foton_sinir=EARTH_FOTON_SINIRI, bakim_taban=None, sessiz=False
+):
+    """
+    Mars kısıtları (tümü ilk, gerekçeli varsayımlar -- kesin ölçüm değil,
+    bkz. mars-minimal-gene-network'teki aynı dürüstlük notu):
+
+    - foton_carpani=0.59: Mars yüzeyinde maksimum güneş ışını Dünya'nın
+      ~%59'u (590 W/m² vs 1000 W/m², bkz. README > Kaynaklar).
+    - n2_carpani=0.0002: Mars'ta N2'nin MUTLAK kısmi basıncı Dünya'nınkinin
+      ~1/6500'ü (Mars: %1.9 N2 x ~0.636 kPa toplam basınç ≈ 0.0121 kPa;
+      Dünya: %78 x ~101.3 kPa ≈ 79 kPa -- oran ≈0.000153). Bu SADECE bir
+      kısmi-basınç oranı, akı sınırına birebir çevrilmesi bilimsel olarak
+      kesin değil (mars-minimal-gene-network'teki O2 kısıtı notuyla aynı
+      sınırlama) -- 0.0002 bu oranın gerekçeli, yuvarlak bir yaklaşığı.
+    - h2o_cap=1.0: düşük su aktivitesi, önceki projelerle aynı ilk varsayım.
+    - bakim_carpani: radyasyon onarımı için ek ATP -- r_ATPM'in sabit
+      akışını çarpıyor (önceki projelerdeki "bakım çarpanı" yöntemiyle
+      birebir aynı, r_ATPM zaten temiz/gen-ilişkisiz bir NGAM reaksiyonu).
+    """
+    model.reactions.EX_m_photon_psii_b.lower_bound = -foton_sinir * foton_carpani
+    model.reactions.EX_m_photon_psi_b.lower_bound = -foton_sinir * foton_carpani
+    model.reactions.EX_m_co2_b.lower_bound = -1000  # Mars'ta bol (%95.5) -- kısıtlayıcı olmasın
+    model.reactions.EX_m_n2_b.lower_bound = -1000 * n2_carpani
+    model.reactions.EX_m_h2o_b.bounds = (-h2o_cap, h2o_cap)
+
+    taban = bakim_taban if bakim_taban is not None else atpm.lower_bound
+    yeni_bakim = taban * bakim_carpani
+    atpm.bounds = (yeni_bakim, yeni_bakim)
+    if not sessiz:
+        print(f"Mars kısıtları: foton_sinir={foton_sinir*foton_carpani:.3f}, "
+              f"n2_sinir={1000*n2_carpani:.4f}, h2o_cap={h2o_cap}, "
+              f"bakım(ATPM)={atpm.bounds}")
+    return model
+
+
+def mars_buyume(model):
+    """Bkz. mars-minimal-cell-network'teki kritik ders: infeasible durumda
+    objective_value ASLA gerçek bir büyüme oranı gibi raporlanmaz."""
+    mars_solution = model.optimize(raise_error=False)
+    durum = model.solver.status
+    if durum != "optimal":
+        print(f"Mars koşulunda büyüme oranı: TANIMSIZ (durum: {durum})")
+    else:
+        print(f"Mars koşulunda büyüme oranı (1/saat): {mars_solution.objective_value} | durum: {durum}")
+    return mars_solution
+
+
 def main():
     model = modeli_yukle()
-    referans_buyume(model)
+    referans_ortami_uygula(model)
+    baseline = referans_buyume(model)
+    atpm = bakim_reaksiyonunu_bul(model)
+    model = mars_kisitlarini_uygula(model, atpm)
+    mars_solution = mars_buyume(model)
+
+    print()
+    print("--- Özet ---")
+    print(f"Referans (kalibre edilmiş fotoototrofik ortam): {baseline.objective_value}")
+    if model.solver.status == "optimal":
+        print(f"Mars koşulu:                                    {mars_solution.objective_value}")
+    else:
+        print(f"Mars koşulu:                                    TANIMSIZ (infeasible)")
 
 
 if __name__ == "__main__":

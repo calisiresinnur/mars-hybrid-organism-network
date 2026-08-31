@@ -36,15 +36,32 @@ notlara bak.
    R. varieornatus'ta (Dsup'ın kaynağı tardigrade) trehaloz üretimi
    düşük/önemsiz, asıl mekanizma CAHS/SAHS/MAHS (yapısal, Katman B).
 
+## Devam — 2026-08-31 (aynı gün, ikinci tur: ilk Mars kısıt testi)
+
+**TAMAMLANDI**: Işık kalibrasyonu (Mars %59 güneş ışını) + N2 kısmi
+basınç kısıtı (~1/6500) + Mars kısıtlarının uygulanması. NGAM = `r_ATPM`
+bulundu (B. subtilis'teki ATPM ile birebir aynı sözleşme, sabit 2.8,
+gen-ilişkisiz -- JCVI-syn3A'daki ATPase paradoksu burada yok).
+
+**Referans kalibrasyonu**: foton_sınırı=8.5 → büyüme=0.014476/saat,
+gerçek literatür değerine (Cyanothece 51142, 12s ışık/12s karanlık,
+çiftlenme ~48 saat → hedef ln2/48=0.014441) ~%0.2 farkla örtüşüyor.
+
+**İlk Mars bulgusu** (bakım çarpanı henüz taranmadı, sabit 1.0):
+Mars koşulunda büyüme referansın **%51'i** (0.00737/saat), infeasible
+DEĞİL, keskin uçurum YOK. İzole kısıt testi: **sadece ışık kısıtı**
+tüm-kısıtlarla BİREBİR aynı sonucu veriyor -- N2 (kısmi basınç ~6500x
+azalsa bile) ve su hiç belirleyici değil. Yani bu organizmanın Mars
+canlılığı TAMAMEN ışığa bağlı. Bu, projedeki dördüncü net "darboğaz
+profili" (B. subtilis=su, Salinibacter=yok/doğrusal, JCVI-syn3A=
+auxotrofi/imkânsız, Cyanothece=ışık/orta azalma). Detay: README >
+"Mars kısıtları — ilk bulgu".
+
 ## Henüz yapılmadı / sıradaki somut adımlar
 
-1. Gerçekçi Mars ortamı kalibrasyonu — ışık şiddeti (Mars'ta Dünya'nın
-   ~%43'ü güneş ışığı alır, bunu ayrı araştırıp foton exchange sınırına
-   çevirmek gerekecek), CO2/N2 kısmi basınçları (Cortesão 2019'daki
-   %95.54 CO2/%0.03'e karşı ~2% N2), su kısıtı, radyasyon→bakım enerjisi
-   (NGAM'a eşdeğer bir reaksiyon bu modelde bulunup bulunmadığı henüz
-   kontrol edilmedi).
-2. Duyarlılık analizi + gen esansiyellik/silme analizi
+1. Bakım çarpanının (radyasyon) etkisini tarama -- bu ilk testte
+   carpani=1.0 sabit tutuldu, henüz taranmadı.
+2. Tam duyarlılık analizi + gen esansiyellik/silme analizi
    (SOLVER_TOLERANCE=1e-9'dan başlayarak, önceki projelerdeki
    metodoloji + dersler tekrar uygulanarak -- özellikle solver
    artefaktlarına karşı REPEATED-verification disiplinini sürdür).
