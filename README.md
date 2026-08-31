@@ -218,20 +218,48 @@ Sonuçlar: `results/gen_silme_sonuclari.csv`,
 `results/mars_yeni_esansiyel_genler.csv`, `results/mars_dispanse_olan_genler.csv`
 (bu proje için de boş — hiçbir gen dispanse olmuyor).
 
+## Katman B — yapısal/koruyucu genler (literatür taraması, ilk tur)
+
+Dsup, CAHS/SAHS/MAHS, HSP, DNA onarım genleri ve TRID1 araştırıldı; her
+biri için kaynak organizma, mekanizma ve **kanıt seviyesi** açıkça
+etiketlendi (bkz. `data/katman_b_genler.csv`). Bu genler FBA ile
+ÇALIŞTIRILMIYOR — hiçbiri bir metabolik reaksiyonu katalize etmiyor
+(bkz. proje docstring'i). Özet:
+
+| Protein/gen | Kanıt seviyesi |
+|---|---|
+| **CAHS** (2/4 test edilen gen) | ✅ **Knockdown-kanıtlı esansiyel** (Boothby ve ark. 2017, RNAi ile susturulunca kuruma direnci gerçekten düşüyor) |
+| **SAHS** (1 test edilen gen) | ✅ **Knockdown-kanıtlı esansiyel** (aynı çalışma) |
+| Dsup | ⚠️ Sadece kazanım-fonksiyonu (insan hücresi) — tardigrade'in kendisinde knockdown YOK |
+| MAHS | ⚠️ Sadece kazanım-fonksiyonu (insan hücresi) — knockdown YOK |
+| HSP70 | ⚠️ Sadece upregülasyon/korelasyon — knockdown YOK |
+| HSP21/24.6/25.1/38 | ⚠️ Heterolog (bakteri) kanıt — tardigrade'de knockdown YOK. **DİKKAT**: aynı ailenin HSP17/19/20 üyeleri test edilip koruyucu etkisi OLMADIĞI bulunmuş — "HSP ailesi" diye toptan genelleme YANLIŞ |
+| RecA/Rad51/Ku/umuC/Ada (HGT) | ⚠️ Sadece genom-analizi/korunmuşluk — knockdown YOK. Bu HGT bulgusu literatürde kısmen tartışmalı (bazı takip çalışmaları kontaminasyon iddia etti) — doğrulanmalı |
+| TRID1/TDR1 | ⚠️ Sadece korelasyon + insan hücresinde kazanım-kanıtı — tardigrade'de CRISPR HENÜZ mümkün değil (yazarların kendi ifadesi) |
+| DODA1 (betalain sentezi) | 🔄 **Bu METABOLİK bir yol — Katman A'ya aday**, Katman B değil |
+
+**Genel gözlem**: Şu ana kadar sadece CAHS/SAHS gerçek knockdown kanıtı
+taşıyor — geri kalan çoğu "gösterge/aday" seviyesinde (kazanım-fonksiyonu
+veya korelasyon). Bunun nedeni kısmen metodolojik: tardigrade'lerde
+CRISPR-Cas9 ile gen inaktivasyonu **henüz mümkün değil** (TRID1
+makalesinin yazarlarının kendi ifadesi) — bu yüzden RNAi'nin çalıştığı
+birkaç gen dışında çoğu iddia knockout/knockdown ile doğrudan test
+edilemiyor.
+
+**Henüz yapılmadı**: CAHS/SAHS için test edilen spesifik gen ID'lerinin
+makale orijinal metninden netleştirilmesi; RecA/Rad51 HGT tartışmasının
+derinlemesine kontrolü; DODA1'in Katman A'ya eklenip eklenmeyeceğine
+karar verilmesi.
+
 ## Sıradaki adımlar
 
-1. Gerçekçi Mars ortamı kalibrasyonu (ışık şiddeti, CO2/N2 kısmi
-   basınçları, su kısıtı, radyasyon→bakım enerjisi) — mars-minimal-*
-   projelerindeki yöntemle.
-2. Duyarlılık analizi + gen esansiyellik/silme analizi
-   (SOLVER_TOLERANCE=1e-9 ile).
-3. Katman A'ya antioksidan enzim / trehaloz gibi metabolik modüllerin
+1. Katman A'ya antioksidan enzim / trehaloz gibi metabolik modüllerin
    (gerçek kaynak organizmasıyla — trehaloz için Artemia/maya, tardigrade
-   DEĞİL — etiketlenerek) eklenmesi (isteğe bağlı, kullanıcıyla
-   netleştirilecek).
-4. Katman B: Dsup, CAHS/SAHS/MAHS, HSP70/20, DNA onarım genlerinin
-   literatür taraması, kanıt-seviyesi tablosu.
-5. Üç projenin (B. subtilis/Salinibacter/JCVI-syn3A/Cyanothece)
+   DEĞİL — etiketlenerek) eklenmesi, ve DODA1 (betalain) yolunun
+   değerlendirilmesi (isteğe bağlı, kullanıcıyla netleştirilecek).
+2. Katman B taraması derinleştirilmeli: CAHS/SAHS'ın test edilen spesifik
+   gen ID'leri, RecA/Rad51 HGT tartışmasının kontrolü.
+3. Dört projenin (B. subtilis/Salinibacter/JCVI-syn3A/Cyanothece)
    karşılaştırmalı bulgu tablosu.
 
 ## Kaynaklar
@@ -240,6 +268,13 @@ Sonuçlar: `results/gen_silme_sonuclari.csv`,
   Light-Driven Reductant Partitioning and Carbon Fluxes in Diazotrophic
   Unicellular Cyanobacterium *Cyanothece* sp. ATCC 51142. *PLoS Comput
   Biol* 8(4):e1002460.
+- Katman B kaynakları — tam liste ve kanıt seviyeleri için bkz.
+  `data/katman_b_genler.csv`. Öne çıkanlar: Boothby ve ark. (2017) *Mol
+  Cell* 65(6):975-984 (CAHS/SAHS knockdown); Hashimoto ve ark. (2016)
+  *Nat Commun* 7:12808 (Dsup); Chavez ve ark. (2019) *eLife* 8:e47682
+  (Dsup mekanizması); Tanaka ve ark. (2015) *PLOS ONE* 10(2):e0118272
+  (MAHS); Boothby ve ark. (2015) *PNAS* 112(52):15976-15981 (DNA onarım
+  genleri HGT, DODA1).
 - Diğer Mars atmosfer/radyasyon kaynakları için bkz.
   [mars-minimal-gene-network README](https://github.com/calisiresinnur/mars-minimal-gene-network).
 - JCVI-syn3A auxotrofi bulgusu için bkz.

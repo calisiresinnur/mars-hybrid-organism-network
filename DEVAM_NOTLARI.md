@@ -72,18 +72,46 @@ oksidaz/redüktaz). r_ATPM gen-ilişkisiz olduğu için JCVI-syn3A'daki
 essentiality-paradoksu burada hiç oluşmadı, ekstra düzeltme gerekmedi.
 Detay: README > "Gen esansiyellik/silme analizi".
 
+## Devam — 2026-09-01 (dördüncü tur: Katman B literatür taraması, ilk tur)
+
+**TAMAMLANDI (ilk tur)**: Dsup, CAHS, SAHS, MAHS, HSP70, küçük HSP ailesi
+(HSP17-38), RecA/Rad51/Ku/umuC/Ada (DNA onarım, HGT), TRID1/TDR1, DODA1
+araştırıldı. Tablo: `data/katman_b_genler.csv` (kaynak organizma +
+mekanizma + kanıt seviyesi + kaynak + notlar sütunlarıyla).
+
+**En önemli bulgu**: Sadece **CAHS ve SAHS** gerçek knockdown/RNAi
+kanıtı taşıyor (Boothby ve ark. 2017, Mol Cell — susturulunca kuruma
+direnci gerçekten düşüyor). Geri kalanların (Dsup, MAHS, HSP70, TRID1,
+RecA/Rad51 HGT) HEPSİ sadece kazanım-fonksiyonu (insan hücresine
+transfeksiyon) veya korelasyon/genom-analizi seviyesinde -- tardigrade'in
+KENDİSİNDE knockdown kanıtı YOK. Kök neden: tardigrade'lerde CRISPR-Cas9
+ile gen inaktivasyonu HENÜZ mümkün değil (TRID1 makalesinin yazarlarının
+kendi ifadesi) -- bu yüzden RNAi'nin çalıştığı birkaç gen dışında çoğu
+iddia doğrudan test edilemiyor. Bu, Katman B'nin "literatür kanıt-
+seviyesiyle izlenecek" tasarımının TAM olarak neden gerekli olduğunu
+gösteren somut bir örnek.
+
+**Önemli düzeltme/uyarı**: küçük HSP ailesinde (HSP17-38) TÜM üyeler
+aynı şekilde davranmıyor -- HSP21/24.6/25.1/38 koruyucu bulunurken
+HSP17/19/20 TEST EDİLİP koruyucu ETKİSİ OLMADIĞI bulunmuş. "HSP ailesi"
+diye toptan genelleme yapmak YANLIŞ -- gen-spesifik olunmalı (aynı
+titizlik CAHS/SAHS için de geçerli: hangi 2 CAHS geni test edildi, henüz
+netleştirilmedi).
+
+**Yan bulgu**: DODA1 (betalain sentezi, yatay gen transferiyle
+kazanılmış) aslında METABOLİK bir yol (küçük molekül biyosentezi) --
+Katman B değil, Katman A'ya (FBA'ya eklenebilir) aday. Henüz eklenmedi.
+
 ## Henüz yapılmadı / sıradaki somut adımlar
 
-1. Katman A'ya isteğe bağlı metabolik modüller (antioksidan enzimler,
+1. Katman B taraması derinleştirilmeli: CAHS/SAHS'ın test edilen
+   spesifik gen ID'leri makalenin orijinal metninden netleştirilmeli;
+   RecA/Rad51 HGT bulgusunun literatürdeki tartışmalı durumu (bazı takip
+   çalışmaları kontaminasyon iddia etti) kontrol edilmeli.
+2. Katman A'ya isteğe bağlı metabolik modüller (antioksidan enzimler,
    trehaloz -- doğru kaynak organizmasıyla, örn. trehaloz için Artemia/
-   maya, etiketlenerek) eklenmesi -- kullanıcıyla ayrıca netleştirilecek,
-   henüz karar verilmedi.
-2. **Katman B literatür taraması** (büyük iş, ayrı bir oturum
-   gerektirebilir): Dsup (Ramazzottius varieornatus), CAHS/SAHS/MAHS
-   proteinleri, HSP70/HSP20, DNA onarım genleri (RecA benzeri) -- her
-   biri için kaynak organizma + kanıt seviyesi (knockdown/RNAi ile
-   esansiyellik kanıtlanmış / sadece korunmuşluk / sadece upregülasyon)
-   etiketli bir tablo.
+   maya, etiketlenerek) ve DODA1 (betalain) yolunun eklenmesi --
+   kullanıcıyla ayrıca netleştirilecek, henüz karar verilmedi.
 3. Dört projenin karşılaştırmalı bulgu tablosu (B. subtilis su-kısıtlı
    uçurum / Salinibacter uçurumsuz-doğrusal / JCVI-syn3A auxotrofi-engeli
    / Cyanothece ışık-kısıtlı+elektron-taşıma-zinciri).
