@@ -102,16 +102,42 @@ netleştirilmedi).
 kazanılmış) aslında METABOLİK bir yol (küçük molekül biyosentezi) --
 Katman B değil, Katman A'ya (FBA'ya eklenebilir) aday. Henüz eklenmedi.
 
+## Devam — 2026-09-01 (beşinci tur: RecA/Rad51 HGT derinleştirmesi)
+
+**TAMAMLANDI**: RecA/Rad51/Ku/umuC/Ada HGT iddiasının kaynağı araştırıldı
+ve ÇÖKTÜĞÜ bulundu. Zincir: Boothby ve ark. 2015 (PNAS) → %17.5 HGT iddia
+etti → Koutsovoulos ve ark. 2016 (PNAS) bunun büyük ölçüde KONTAMİNASYON
+ARTEFAKTI olduğunu gösterdi (düzeltilmiş: ~%0.4) → Yoshida ve ark. 2017
+(PLOS Biol) yüksek kaliteli, temiz genomla ~%2.3 GERÇEK HGT doğruladı,
+ama RecA/Rad51/Ku/umuC/Ada bu doğrulanmış listede YOK. Sonuç: bu satır
+Katman B tablosundan (`data/katman_b_genler.csv`) çıkarıldı, ❌ olarak
+işaretlendi (silinmedi -- şeffaflık için "geçersiz bulundu" notuyla
+tutuluyor).
+
+**Yan bulgu (önemli)**: Aynı derinleştirme sırasında **katalazın**
+GERÇEKTEN doğrulanmış bir HGT geni olduğu bulundu (Yoshida 2017 --
+tüm katalaz lokusları bakteriyel kökenli). Bu METABOLİK bir enzim
+(2 H2O2 -> 2 H2O + O2) -- DODA1'den bile daha sağlam kanıt tabanlı bir
+Katman A adayı (gerçek reaksiyon + gerçek doğrulanmış HGT kaynağı).
+Henüz eklenmedi.
+
+**CAHS/SAHS tam gen ID'leri**: Bu turda da doğrulanamadı -- Boothby 2017
+Mol Cell'in tam metnine birden fazla yoldan (Elsevier, PubMed, UNC
+kurumsal deposu) erişim denendi, hepsi engellendi/başarısız (ödeme
+duvarı veya ağ sorunu). Sayısal bağlam netleşti: H. dujardini'de 17 CAHS
+transkripti var, 11'i ifade ediliyor, 4'ü kuruma sırasında yüksek-
+indükleniyor (13-22 kat), bu 4'ten 2'si RNAi ile test edildi. İsimler
+(ör. "CAHS1/CAHS8" gibi) hâlâ eksik -- kurumsal erişimle tekrar
+denenmeli.
+
 ## Henüz yapılmadı / sıradaki somut adımlar
 
-1. Katman B taraması derinleştirilmeli: CAHS/SAHS'ın test edilen
-   spesifik gen ID'leri makalenin orijinal metninden netleştirilmeli;
-   RecA/Rad51 HGT bulgusunun literatürdeki tartışmalı durumu (bazı takip
-   çalışmaları kontaminasyon iddia etti) kontrol edilmeli.
-2. Katman A'ya isteğe bağlı metabolik modüller (antioksidan enzimler,
-   trehaloz -- doğru kaynak organizmasıyla, örn. trehaloz için Artemia/
-   maya, etiketlenerek) ve DODA1 (betalain) yolunun eklenmesi --
-   kullanıcıyla ayrıca netleştirilecek, henüz karar verilmedi.
+1. CAHS/SAHS'ın tam gen ID'leri (kurumsal erişim veya farklı kaynakla
+   tekrar denenmeli).
+2. Katman A'ya isteğe bağlı metabolik modüller: katalaz (YENİ, güçlü
+   kanıt) + DODA1 (betalain) + trehaloz (doğru kaynak organizmasıyla,
+   Artemia/maya) -- kullanıcıyla ayrıca netleştirilecek, henüz karar
+   verilmedi.
 3. Dört projenin karşılaştırmalı bulgu tablosu (B. subtilis su-kısıtlı
    uçurum / Salinibacter uçurumsuz-doğrusal / JCVI-syn3A auxotrofi-engeli
    / Cyanothece ışık-kısıtlı+elektron-taşıma-zinciri).

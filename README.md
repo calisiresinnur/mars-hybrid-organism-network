@@ -234,9 +234,10 @@ etiketlendi (bkz. `data/katman_b_genler.csv`). Bu genler FBA ile
 | MAHS | ⚠️ Sadece kazanım-fonksiyonu (insan hücresi) — knockdown YOK |
 | HSP70 | ⚠️ Sadece upregülasyon/korelasyon — knockdown YOK |
 | HSP21/24.6/25.1/38 | ⚠️ Heterolog (bakteri) kanıt — tardigrade'de knockdown YOK. **DİKKAT**: aynı ailenin HSP17/19/20 üyeleri test edilip koruyucu etkisi OLMADIĞI bulunmuş — "HSP ailesi" diye toptan genelleme YANLIŞ |
-| RecA/Rad51/Ku/umuC/Ada (HGT) | ⚠️ Sadece genom-analizi/korunmuşluk — knockdown YOK. Bu HGT bulgusu literatürde kısmen tartışmalı (bazı takip çalışmaları kontaminasyon iddia etti) — doğrulanmalı |
+| RecA/Rad51/Ku/umuC/Ada (HGT) | ❌ **İddia büyük olasılıkla geçersiz** — kaynak makalenin (Boothby 2015) genel HGT iddiası (%17.5) kontaminasyon artefaktı olduğu gösterildi (Koutsovoulos 2016: ~%0.4'e düzeltildi); yüksek kaliteli genomda (Yoshida 2017: doğrulanmış ~%2.3 HGT) bu genler doğrulanmış HGT listesinde YOK — listeden çıkarıldı |
 | TRID1/TDR1 | ⚠️ Sadece korelasyon + insan hücresinde kazanım-kanıtı — tardigrade'de CRISPR HENÜZ mümkün değil (yazarların kendi ifadesi) |
-| DODA1 (betalain sentezi) | 🔄 **Bu METABOLİK bir yol — Katman A'ya aday**, Katman B değil |
+| DODA1 (betalain sentezi) | 🔄 Metabolik yol — Katman A'ya aday, Katman B değil |
+| **Katalaz** (yeni bulundu) | ✅ **Doğrulanmış GERÇEK HGT** (bakteriyel kökenli, Yoshida 2017) — metabolik, **Katman A'ya DODA1'den daha sağlam bir aday** |
 
 **Genel gözlem**: Şu ana kadar sadece CAHS/SAHS gerçek knockdown kanıtı
 taşıyor — geri kalan çoğu "gösterge/aday" seviyesinde (kazanım-fonksiyonu
@@ -246,10 +247,18 @@ makalesinin yazarlarının kendi ifadesi) — bu yüzden RNAi'nin çalıştığ�
 birkaç gen dışında çoğu iddia knockout/knockdown ile doğrudan test
 edilemiyor.
 
-**Henüz yapılmadı**: CAHS/SAHS için test edilen spesifik gen ID'lerinin
-makale orijinal metninden netleştirilmesi; RecA/Rad51 HGT tartışmasının
-derinlemesine kontrolü; DODA1'in Katman A'ya eklenip eklenmeyeceğine
-karar verilmesi.
+**Derinleştirme sonucu (2026-09-01)**: RecA/Rad51/Ku/umuC/Ada HGT iddiası
+araştırılınca ÇÖKTÜ (yukarıya bkz.) — Katman B'den çıkarıldı. Bu
+derinleştirme sırasında katalazın GERÇEKTEN doğrulanmış bir HGT geni
+olduğu bulundu (Yoshida 2017) — DODA1'den bile daha sağlam bir Katman A
+adayı. CAHS/SAHS'ın TAM gen ID'leri bu turda da doğrulanamadı (Elsevier
+ödeme duvarı + erişim sorunları) — sayısal bağlam netleşti (17 CAHS
+transkriptinden 11'i ifade ediliyor, 4'ü yüksek-indüklenen, 2'si test
+edildi) ama isimler bekliyor.
+
+**Henüz yapılmadı**: CAHS/SAHS'ın tam gen ID'leri (kurumsal erişimle
+denenmeli); katalaz + DODA1'in Katman A'ya eklenip eklenmeyeceğine karar
+verilmesi.
 
 ## Sıradaki adımlar
 
@@ -273,8 +282,11 @@ karar verilmesi.
   Cell* 65(6):975-984 (CAHS/SAHS knockdown); Hashimoto ve ark. (2016)
   *Nat Commun* 7:12808 (Dsup); Chavez ve ark. (2019) *eLife* 8:e47682
   (Dsup mekanizması); Tanaka ve ark. (2015) *PLOS ONE* 10(2):e0118272
-  (MAHS); Boothby ve ark. (2015) *PNAS* 112(52):15976-15981 (DNA onarım
-  genleri HGT, DODA1).
+  (MAHS); Boothby ve ark. (2015) *PNAS* 112(52):15976-15981 (orijinal
+  HGT iddiası — büyük ölçüde geçersiz, DODA1 istisna); Koutsovoulos ve
+  ark. (2016) *PNAS* 113(18):5053-5058 (HGT iddiasının kontaminasyon
+  düzeltmesi); Yoshida ve ark. (2017) *PLOS Biol* 15(7):e2002266
+  (yüksek kaliteli genom, doğrulanmış HGT listesi — katalaz dahil).
 - Diğer Mars atmosfer/radyasyon kaynakları için bkz.
   [mars-minimal-gene-network README](https://github.com/calisiresinnur/mars-minimal-gene-network).
 - JCVI-syn3A auxotrofi bulgusu için bkz.
