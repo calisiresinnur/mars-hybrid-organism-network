@@ -130,14 +130,40 @@ indükleniyor (13-22 kat), bu 4'ten 2'si RNAi ile test edildi. İsimler
 (ör. "CAHS1/CAHS8" gibi) hâlâ eksik -- kurumsal erişimle tekrar
 denenmeli.
 
+## Devam — 2026-09-01 (altıncı tur: katalaz testi -- SONUÇ negatif)
+
+**TAMAMLANDI**: Kullanıcı "en sağlam kanıtlıdan başla" dedi -> katalaz.
+Modeli kontrol edince ortaya çıktı: Cyanothece'nin KENDİ katalazı
+(`r_CAT`) ve SOD'u (`r_SOD`, gen cce_1620) ZATEN VAR, sınırsız
+kapasiteyle -- "tardigrade'den ekleme" fikri anlamsızlaştı (eklenecek
+kapasite eksikliği yok).
+
+Bunun yerine gerçek soruyu test ettik: modelde radyasyon->ROS bağlantısı
+yok, bu yüzden fizik-temelli (G-değeri, su radyolizi, 1.1e-7 mol/J) bir
+"Mars radyasyonu -> zorunlu H2O2 üretimi" baskısı türetildi (0.64 mSv/gün
+x G-değeri x hücre-su-oranı varsayımları -> 1.17e-11 mmol/gDW/saat) ve
+test edildi: `src/katman_a_ros_testi.py`.
+
+**SONUÇ: negatif/gereksiz**. Mars ortam dozu, model kapasitesinin
+(1000) 14 büyüklük mertebesi altında -- büyümede ÖLÇÜLEBİLİR HİÇBİR ETKİ
+yok. Gerçek maliyet ancak kapasite tavanına (999-1000) çok yakın
+zorlanan akışlarda başlıyor, Mars'ın gerçek dozundan ~10^14 kat uzakta.
+Yorum: bu tehdit modelinde ekstra katalaz FAYDASIZ; radyasyonun asıl
+tehdidi muhtemelen doğrudan DNA hasarı (zaten bakım_carpani ile
+proxy'leniyor), akut yüksek-doz olaylar (SPE) ayrı, test edilmedi.
+
+Bu, "en sağlam kanıtlı olandan başla" stratejisinin DEĞERİNİ gösteren
+bir örnek: erken bir negatif sonuç, zaman kaybını (DODA1/trehaloz gibi
+daha karmaşık eklemelere geçmeden önce) önledi.
+
 ## Henüz yapılmadı / sıradaki somut adımlar
 
 1. CAHS/SAHS'ın tam gen ID'leri (kurumsal erişim veya farklı kaynakla
    tekrar denenmeli).
-2. Katman A'ya isteğe bağlı metabolik modüller: katalaz (YENİ, güçlü
-   kanıt) + DODA1 (betalain) + trehaloz (doğru kaynak organizmasıyla,
-   Artemia/maya) -- kullanıcıyla ayrıca netleştirilecek, henüz karar
-   verilmedi.
+2. DODA1 (betalain) yolunun Katman A'ya eklenmesi değerlendirilmeli --
+   katalazdan FARKLI olarak bu gerçekten modelde YOK, potansiyel olarak
+   anlamlı bir ekleme olabilir. İsteğe bağlı trehaloz modülü (Artemia/
+   maya kaynaklı, tardigrade DEĞİL).
 3. Dört projenin karşılaştırmalı bulgu tablosu (B. subtilis su-kısıtlı
    uçurum / Salinibacter uçurumsuz-doğrusal / JCVI-syn3A auxotrofi-engeli
    / Cyanothece ışık-kısıtlı+elektron-taşıma-zinciri).

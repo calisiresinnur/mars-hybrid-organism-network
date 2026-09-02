@@ -257,15 +257,40 @@ transkriptinden 11'i ifade ediliyor, 4'ü yüksek-indüklenen, 2'si test
 edildi) ama isimler bekliyor.
 
 **Henüz yapılmadı**: CAHS/SAHS'ın tam gen ID'leri (kurumsal erişimle
-denenmeli); katalaz + DODA1'in Katman A'ya eklenip eklenmeyeceğine karar
-verilmesi.
+denenmeli); DODA1'in Katman A'ya eklenip eklenmeyeceğine karar verilmesi.
+
+## Katman A — katalaz testi: SONUÇ = gerekli değil
+
+`src/katman_a_ros_testi.py`. Modeli kontrol edince ortaya çıktı:
+Cyanothece'nin **kendi katalazı (`r_CAT`) ve süperoksit dismutazı
+(`r_SOD`, gen `cce_1620`) zaten var**, sınırsız kapasiteyle — beklenir,
+çünkü fotosentez kendi başına ROS üretir. "Tardigrade'den katalaz
+ekleme" fikri bu yüzden anlamsız — eklenecek bir kapasite eksikliği yok.
+
+Gerçek soru: modelde ışığı/radyasyonu ROS üretimine bağlayan bir
+mekanizma olmadığı için, **Mars radyasyonu → zorunlu H2O2 üretimi**
+baskısını fizik-temelli türetip test ettik: su radyolizinde H2O2 verimi
+(G-değeri ≈ 1.1×10⁻⁷ mol/J, radyasyon kimyası literatürü) × Mars yüzey
+dozu (0.64 mSv/gün, Hassler ve ark. 2014) → **1.17×10⁻¹¹ mmol/gDW/saat**
+— modelin CAT/SOD kapasitesinin (1000 mmol/gDW/h) **14 büyüklük mertebesi
+altında**.
+
+**Test sonucu**: Mars ortam dozunda büyümede ölçülebilir hiçbir etki yok
+(13. ondalık basamakta fark). Zorlanan H2O2 akışı model kapasitesinin
+(1000) yakınına (999) getirilince gerçek bir maliyet ortaya çıkıyor
+(%58 referans), kapasiteyi aşınca (1001) infeasible oluyor — ama bu
+eşik Mars'ın gerçek dozundan ~10¹⁴ kat uzakta.
+
+**Sonuç**: Bu tehdit modelinde ekstra katalaz hiçbir fayda sağlamaz.
+Radyasyonun asıl tehdidi muhtemelen doğrudan DNA hasarı (`bakım_carpani`
+ile zaten proxy'leniyor) — akut yüksek-doz olaylar (güneş parçacık
+olayları) test edilmedi, ayrı bir konu.
 
 ## Sıradaki adımlar
 
-1. Katman A'ya antioksidan enzim / trehaloz gibi metabolik modüllerin
-   (gerçek kaynak organizmasıyla — trehaloz için Artemia/maya, tardigrade
-   DEĞİL — etiketlenerek) eklenmesi, ve DODA1 (betalain) yolunun
-   değerlendirilmesi (isteğe bağlı, kullanıcıyla netleştirilecek).
+1. DODA1 (betalain) yolunun Katman A'ya eklenip eklenmeyeceğine karar
+   verilmesi; isteğe bağlı trehaloz modülü (kaynak: Artemia/maya,
+   tardigrade DEĞİL).
 2. Katman B taraması derinleştirilmeli: CAHS/SAHS'ın test edilen spesifik
    gen ID'leri, RecA/Rad51 HGT tartışmasının kontrolü.
 3. Dört projenin (B. subtilis/Salinibacter/JCVI-syn3A/Cyanothece)
