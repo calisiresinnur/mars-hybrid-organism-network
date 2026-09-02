@@ -156,17 +156,33 @@ Bu, "en sağlam kanıtlı olandan başla" stratejisinin DEĞERİNİ gösteren
 bir örnek: erken bir negatif sonuç, zaman kaybını (DODA1/trehaloz gibi
 daha karmaşık eklemelere geçmeden önce) önledi.
 
+## Devam — 2026-09-01 (yedinci tur: DODA1 araştırması + dört-proje karşılaştırma tablosu)
+
+**DODA1 araştırması**: Betalamik asit üretimi (DODA enzimi) gerçekten
+**Anabaena cylindrica adlı bir siyanobakteride** (Cyanothece ile aynı
+filum) klonlanıp karakterize edilmiş bulundu ("AcDODA", 17.8 kDa
+homodimer) -- bitkiden ödünç almaya göre çok daha savunulabilir bir
+kaynak. Ama tirozin->DOPA adımı hâlâ bitki kaynaklı (CYP76AD1) olurdu.
+Kullanıcıyla karar: katalaz testi zaten negatif çıktığı (Mars ortam
+radyasyonunun ROS baskısı ihmal edilebilir) için DODA1 de muhtemelen
+aynı sonucu verir -- **DODA1 BEKLEMEDE**, öncelik dört-proje
+karşılaştırma tablosuna verildi.
+
+**TAMAMLANDI**: `KARSILASTIRMA.md` -- dört modelin (B. subtilis/
+Salinibacter/JCVI-syn3A/Cyanothece) bulgularını bir araya getiren sentez
+belgesi. ÖNEMLİ metodolojik uyarı: dört model FARKLI referans-ortam
+konvansiyonu kullandığı için MUTLAK sayılar (büyüme oranı, esansiyel gen
+YÜZDESİ) modeller arası karşılaştırılamaz -- sadece KALİTATİF darboğaz
+profili karşılaştırılabilir. Ana senteze bkz. o dosya.
+
 ## Henüz yapılmadı / sıradaki somut adımlar
 
 1. CAHS/SAHS'ın tam gen ID'leri (kurumsal erişim veya farklı kaynakla
    tekrar denenmeli).
-2. DODA1 (betalain) yolunun Katman A'ya eklenmesi değerlendirilmeli --
-   katalazdan FARKLI olarak bu gerçekten modelde YOK, potansiyel olarak
-   anlamlı bir ekleme olabilir. İsteğe bağlı trehaloz modülü (Artemia/
-   maya kaynaklı, tardigrade DEĞİL).
-3. Dört projenin karşılaştırmalı bulgu tablosu (B. subtilis su-kısıtlı
-   uçurum / Salinibacter uçurumsuz-doğrusal / JCVI-syn3A auxotrofi-engeli
-   / Cyanothece ışık-kısıtlı+elektron-taşıma-zinciri).
+2. DODA1 (beklemede, düşük öncelik) ve isteğe bağlı trehaloz modülü.
+3. `KARSILASTIRMA.md`'ye üç kardeş projenin README/DEVAM_NOTLARI'ndan
+   referans eklenmesi (mars-minimal-gene-network,
+   mars-minimal-cell-network).
 
 ## Genel hatırlatmalar (önceki projelerden taşınan, hâlâ geçerli)
 

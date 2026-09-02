@@ -286,11 +286,21 @@ Radyasyonun asıl tehdidi muhtemelen doğrudan DNA hasarı (`bakım_carpani`
 ile zaten proxy'leniyor) — akut yüksek-doz olaylar (güneş parçacık
 olayları) test edilmedi, ayrı bir konu.
 
+## Dört modelin karşılaştırmalı bulgu tablosu
+
+Bkz. [KARSILASTIRMA.md](KARSILASTIRMA.md) — B. subtilis (su-kısıtlı
+uçurum) / Salinibacter (uçurumsuz-doğrusal) / JCVI-syn3A (auxotrofi-
+engeli, glikoz-kısıtlı uçurum) / Cyanothece (ışık-kısıtlı, kademeli
+azalma) dört modelin bulgularını bir araya getiren, dört projeyi
+kapsayan sentez belgesi.
+
 ## Sıradaki adımlar
 
 1. DODA1 (betalain) yolunun Katman A'ya eklenip eklenmeyeceğine karar
-   verilmesi; isteğe bağlı trehaloz modülü (kaynak: Artemia/maya,
+   verilmesi (beklemede — katalaz testi negatif çıktığı için öncelik
+   düşürüldü); isteğe bağlı trehaloz modülü (kaynak: Artemia/maya,
    tardigrade DEĞİL).
+2. CAHS/SAHS'ın tam gen ID'leri (kurumsal erişimle denenmeli).
 2. Katman B taraması derinleştirilmeli: CAHS/SAHS'ın test edilen spesifik
    gen ID'leri, RecA/Rad51 HGT tartışmasının kontrolü.
 3. Dört projenin (B. subtilis/Salinibacter/JCVI-syn3A/Cyanothece)
