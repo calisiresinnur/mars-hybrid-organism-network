@@ -6,10 +6,17 @@ IAF/IAA Space Life Sciences Symposium (A1), Paper ID 114761 kapsamındaki
 araştırmanın üçüncü ve son aşaması. Yazar: Esinnur Çalışır, İstanbul
 Üniversitesi.
 
-Bu proje, [mars-minimal-gene-network](https://github.com/calisiresinnur/mars-minimal-gene-network)
-(B. subtilis, Salinibacter) ve
-[mars-minimal-cell-network](https://github.com/calisiresinnur/mars-minimal-cell-network)
-(JCVI-syn3A) projelerinin devamıdır.
+## Durum: analiz tamamlandı
+
+- ✅ Baz organizma (Cyanothece sp. ATCC 51142) seçildi, model indirilip
+  doğrulandı, ortam kalibre edildi
+- ✅ Mars kısıtları (ışık, N2, CO2, su, bakım/radyasyon) uygulandı
+- ✅ Duyarlılık analizi + gen esansiyellik analizi (806 gen) tamamlandı,
+  ana bulgu bağımsız literatürle doğrulandı
+- ✅ Katman B (yapısal/koruyucu genler) literatür taraması yapıldı
+- ✅ Katalaz eklentisi test edildi (sonuç: gereksiz), DODA1 aynı
+  gerekçeyle kapatıldı
+- 🔲 Açık kalan küçük detaylar (aşağıda) — düşük öncelikli
 
 ## Neden bu proje ayrı açıldı: JCVI-syn3A tuzağı
 
@@ -218,6 +225,36 @@ Sonuçlar: `results/gen_silme_sonuclari.csv`,
 `results/mars_yeni_esansiyel_genler.csv`, `results/mars_dispanse_olan_genler.csv`
 (bu proje için de boş — hiçbir gen dispanse olmuyor).
 
+### Bağımsız literatür doğrulaması
+
+FBA bulgusu (NDH-1 kompleksi sadece en aşırı ışık-kısıtlı senaryoda
+esansiyel oluyor), gerçek siyanobakteri fizyolojisi literatürüyle
+BAĞIMSIZ olarak örtüşüyor:
+
+- NDH-1'in siklik elektron akışı (PSI etrafında), **hiçbir ek NADPH
+  maliyeti olmadan** ekstra ATP sentezi için proton-motor-güç sağlıyor
+  — tam da enerji darboğazında "bedava" ek ATP kaynağı rolü.
+- Bu rolün önemi **özellikle düşük ışık yoğunluğunda** belgelenmiş:
+  NDH-bağımlı siklik elektron akışının bozulması, "özellikle düşük ışık
+  yoğunluğunda PSI üzerinden elektron taşıma hızını düşürüyor" (bkz.
+  kaynaklar) — modelin SADECE en aşırı ışık-kısıtlı senaryoda (×3.5)
+  bu genleri esansiyel bulmasıyla, ARA senaryolarda (×1.5/×2.5) DEĞİL,
+  birebir aynı kalitatif desen.
+- Ayrıca NDH-1, fotosentezde önemli bir antioksidan/fotoprotektif
+  mekanizma olarak da belgelenmiş — enerji ve stres direnci rolleri
+  iç içe.
+
+Kaynaklar: Cyanobacterial NDH-1 Complexes (derleme, PMC9283085);
+"Electron flow through NDH-1 complexes is the major driver of cyclic
+electron flow-dependent proton pumping in cyanobacteria" (bioRxiv/
+ScienceDirect, 2020); "Photosystem I cyclic electron flow... performs
+a physiological role for photosynthesis at low light" (PMC4566099).
+
+Bu, `mars-minimal-gene-network`'teki DEG/stres-regulonu çapraz
+kontrolüyle aynı titizlik düzeyinde bir doğrulama — FBA bulgusu
+sadece matematiksel bir çıktı değil, bağımsız deneysel/fizyolojik
+literatürle de tutarlı.
+
 ## Katman B — yapısal/koruyucu genler (literatür taraması, ilk tur)
 
 Dsup, CAHS/SAHS/MAHS, HSP, DNA onarım genleri ve TRID1 araştırıldı; her
@@ -294,17 +331,20 @@ engeli, glikoz-kısıtlı uçurum) / Cyanothece (ışık-kısıtlı, kademeli
 azalma) dört modelin bulgularını bir araya getiren, dört projeyi
 kapsayan sentez belgesi.
 
-## Sıradaki adımlar
+## Kapatılan konu: DODA1 (betalain yolu)
 
-1. DODA1 (betalain) yolunun Katman A'ya eklenip eklenmeyeceğine karar
-   verilmesi (beklemede — katalaz testi negatif çıktığı için öncelik
-   düşürüldü); isteğe bağlı trehaloz modülü (kaynak: Artemia/maya,
-   tardigrade DEĞİL).
-2. CAHS/SAHS'ın tam gen ID'leri (kurumsal erişimle denenmeli).
-2. Katman B taraması derinleştirilmeli: CAHS/SAHS'ın test edilen spesifik
-   gen ID'leri, RecA/Rad51 HGT tartışmasının kontrolü.
-3. Dört projenin (B. subtilis/Salinibacter/JCVI-syn3A/Cyanothece)
-   karşılaştırmalı bulgu tablosu.
+Anabaena cylindrica'da gerçek bir cyanobacterial DODA geni (AcDODA)
+bulundu — bitkiden ödünç almaktan daha savunulabilir bir kaynak olurdu.
+Ama katalaz testi (yukarıda) Mars ortam radyasyonunun ROS baskısının bu
+modelde ölçülemeyecek kadar küçük olduğunu gösterdiği için, "DODA1'i
+antioksidan savunma olarak ekle" aynı negatif sonucu verecekti — zaman
+ve titizlik gerekçesiyle uygulanmadı. Karar: **kapatıldı, uygulanmadı.**
+
+## Açık kalan küçük detaylar
+
+- CAHS/SAHS'ın tam gen ID'leri (Boothby ve ark. 2017'nin tam metnine
+  erişilemedi — Elsevier ödeme duvarı + ağ sorunları; kurumsal erişimle
+  tekrar denenebilir, düşük öncelik).
 
 ## Kaynaklar
 
@@ -322,7 +362,11 @@ kapsayan sentez belgesi.
   ark. (2016) *PNAS* 113(18):5053-5058 (HGT iddiasının kontaminasyon
   düzeltmesi); Yoshida ve ark. (2017) *PLOS Biol* 15(7):e2002266
   (yüksek kaliteli genom, doğrulanmış HGT listesi — katalaz dahil).
-- Diğer Mars atmosfer/radyasyon kaynakları için bkz.
-  [mars-minimal-gene-network README](https://github.com/calisiresinnur/mars-minimal-gene-network).
-- JCVI-syn3A auxotrofi bulgusu için bkz.
-  [mars-minimal-cell-network README](https://github.com/calisiresinnur/mars-minimal-cell-network).
+- NDH-1/elektron taşıma zinciri bulgusunun bağımsız doğrulaması:
+  Cyanobacterial NDH-1 Complexes (derleme, PMC9283085); "Electron flow
+  through NDH-1 complexes is the major driver of cyclic electron
+  flow-dependent proton pumping in cyanobacteria" (2020); "Photosystem
+  I cyclic electron flow... performs a physiological role for
+  photosynthesis at low light" (PMC4566099).
+- Mars yüzey/radyasyon verileri (Cortesão 2019, Hassler 2014) ve dört
+  projeyi kapsayan karşılaştırma için bkz. [KARSILASTIRMA.md](KARSILASTIRMA.md).

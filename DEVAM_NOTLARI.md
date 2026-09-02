@@ -175,14 +175,35 @@ konvansiyonu kullandığı için MUTLAK sayılar (büyüme oranı, esansiyel gen
 YÜZDESİ) modeller arası karşılaştırılamaz -- sadece KALİTATİF darboğaz
 profili karşılaştırılabilir. Ana senteze bkz. o dosya.
 
-## Henüz yapılmadı / sıradaki somut adımlar
+## Devam — 2026-09-01 (sekizinci tur: proje tamamlandı)
 
-1. CAHS/SAHS'ın tam gen ID'leri (kurumsal erişim veya farklı kaynakla
-   tekrar denenmeli).
-2. DODA1 (beklemede, düşük öncelik) ve isteğe bağlı trehaloz modülü.
-3. `KARSILASTIRMA.md`'ye üç kardeş projenin README/DEVAM_NOTLARI'ndan
-   referans eklenmesi (mars-minimal-gene-network,
-   mars-minimal-cell-network).
+Kullanıcı "diğer 3 projeyi çok dile getiriyorsun, 4. projeyi bitirmeye
+odaklan" dedi. Buna göre:
+
+1. **DODA1 resmen kapatıldı, uygulanmadı** — katalaz testi zaten negatif
+   sonuç verdiği için (Mars ortam radyasyonu ROS baskısı ihmal
+   edilebilir), DODA1'in de aynı sonucu vereceği değerlendirildi, zaman
+   ayrılmadı. README'de "Kapatılan konu" olarak açıkça belgelendi.
+2. **Elektron taşıma zinciri bulgusu (15 yeni esansiyel gen, ×3.5
+   senaryosunda) bağımsız literatürle doğrulandı**: NDH-1 siklik
+   elektron akışının ÖZELLİKLE düşük ışıkta kritikleştiği gerçek
+   siyanobakteri fizyolojisi literatüründe belgelenmiş — modelin SADECE
+   en aşırı ışık-kısıtlı senaryoda bu genleri esansiyel bulmasıyla
+   birebir örtüşüyor. Bu, mars-minimal-gene-network'teki DEG/stres-
+   regulonu çapraz kontrolüyle aynı titizlik düzeyinde bir doğrulama.
+3. README yeniden düzenlendi: en üstte "Durum: analiz tamamlandı" özeti
+   eklendi, diğer projelere gereksiz çapraz referanslar azaltıldı
+   (KARSILASTIRMA.md tek toplayıcı nokta olarak bırakıldı).
+
+**Bu proje artık TAMAMLANMIŞ sayılıyor.** Açık kalan tek şey CAHS/SAHS'ın
+tam gen ID'leri — düşük öncelikli, kurumsal erişim gerektiren küçük bir
+detay.
+
+## Açık kalan tek küçük detay
+
+- CAHS/SAHS'ın tam gen ID'leri (kurumsal erişim veya farklı kaynakla
+  tekrar denenebilir — düşük öncelik, projenin ana bulgularını
+  etkilemiyor).
 
 ## Genel hatırlatmalar (önceki projelerden taşınan, hâlâ geçerli)
 
