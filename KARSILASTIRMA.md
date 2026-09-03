@@ -4,6 +4,20 @@ IAC 2026 · IAF/IAA Space Life Sciences Symposium (A1), Paper ID 114761
 kapsamındaki üç projenin (dört genom-ölçekli metabolik model) birleşik
 bulguları. Yazar: Esinnur Çalışır, İstanbul Üniversitesi.
 
+## ⚠️ KRİTİK GÜNCELLEME (2026-09-01): "esansiyel gen" ≠ "minimal gen ağı"
+
+Bu tablodaki "esansiyel gen" sayıları TEKLİ gen silme testinden geliyordu
+— izoenzim/yedek-yol gruplarını yakalayamıyor. Düzeltildi: her üç
+projede (Cyanothece hariç, henüz yapılmadı) ARDIŞIK/açgözlü bir
+indirgeme ile gerçek minimal ağlar kuruldu. **B. subtilis'in "Mars gen
+setini değiştirmiyor" bulgusu YANLIŞTI** — düzeltilince Mars +14-16 yeni
+gen gerektiriyor (solunum/TCA/ACK-PTA teması, JCVI-syn3A ile aynı
+enzim ailesi). Salinibacter ve JCVI-syn3A'nın bulguları DOĞRULANDI.
+Detay: her projenin kendi README'sindeki "Mars senaryoları da yeniden
+test edildi" bölümü. Aşağıdaki tablo henüz bu düzeltmeyi TAM olarak
+yansıtmıyor (Cyanothece'nin minimal ağı da henüz kurulmadı) — bir
+sonraki güncellemede tamamlanacak.
+
 ## Metodolojik uyarı — sayılar ARASINDA doğrudan karşılaştırma YAPILMAMALI
 
 Dört model, dört FARKLI referans-ortam konvansiyonu kullanıyor (B.
